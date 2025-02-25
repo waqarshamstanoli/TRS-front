@@ -10,6 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LayoutComponent } from './layout/layout.component';
+import { DashboardLayoutComponent } from './layout/dashboard-layout/dashboard-layout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { LayoutComponent } from './layout/layout.component';
     TopbarComponent,
     SidebarComponent,
     LayoutComponent,
+    DashboardLayoutComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

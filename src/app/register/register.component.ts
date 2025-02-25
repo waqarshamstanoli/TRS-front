@@ -8,15 +8,15 @@ import { Router } from '@angular/router';
   
 })
 export class RegisterComponent {
-  username: string = '';
+  email: string = '';
   password: string = '';
-  role: string = '';
+  c_password: string = '';
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
   onSubmit(): void {
    
-    this.authService.register(this.username, this.password, this.role).subscribe(
+    this.authService.register(this.email, this.password, this.c_password).subscribe(
       (response) => {
         console.log('Login successful', response);
         this.router.navigate(['/dashboard']); 

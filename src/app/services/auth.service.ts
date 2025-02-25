@@ -7,17 +7,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private loginUrl = 'http://localhost:3000/register'; // Replace with your API URL
+  private loginUrl = 'http://localhost:3000/api/auth/register'; // Replace with your API URL
 
   constructor(private http: HttpClient) {}
-  register(username: string, password: string, role: string): Observable<any> {
-    const body = { username, password, role };
+  register(email: string, password: string, c_password: string): Observable<any> {
+    const body = { email, password, c_password };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.post<any>(this.loginUrl, body, { headers });
   }
-  login(username: string, password: string): Observable<any> {
-    const body = { username, password };
+  login(email: string, password: string): Observable<any> {
+    const body = { email, password };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.post<any>(this.loginUrl, body, { headers });

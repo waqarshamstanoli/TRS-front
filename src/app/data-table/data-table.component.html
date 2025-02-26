@@ -1,0 +1,98 @@
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="nk-block-title">Data Table</h4>
+            <div class="justify-end">
+                <button type="button" class="btn btn-primary" (click)="openModal()">Add Event</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card card-bordered card-preview">
+        <div class="card-inner">
+            <table class="datatable-init nowrap table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                        <td>2011/04/25</td>
+                        <td>$320,800</td>
+                    </tr>
+                    <tr>
+                        <td>Zorita Serrano</td>
+                        <td>Software Engineer</td>
+                        <td>San Francisco</td>
+                        <td>56</td>
+                        <td>2012/06/01</td>
+                        <td>$115,000</td>
+                    </tr>
+                    <tr>
+                        <td>Jennifer Acosta</td>
+                        <td>Junior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                        <td>43</td>
+                        <td>2013/02/01</td>
+                        <td>$75,650</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade show d-block" *ngIf="showModal" style="background: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Event</h5>
+                <button type="button" class="close" (click)="closeModal()">&times;</button>
+            </div>
+            <form [formGroup]="eventForm" (ngSubmit)="saveEvent()" class="w-75">
+            <div class="modal-body">
+                
+             
+                <input  type="text"
+                class="form-control"
+                id="eventName"
+                formControlName="eventName"
+                placeholder="Enter Event Name">
+                <div *ngIf="eventForm.controls['eventName'].invalid && eventForm.controls['eventName'].touched">
+                    <small *ngIf="eventForm.controls['eventName'].errors?.['required']" class="text-danger">
+                      Event Name is required.
+                    </small>
+                    
+                  </div>
+                  
+                <input  type="text"
+                class="form-control"
+                id="eventDescription"
+                formControlName="eventDescription"
+                placeholder="Enter Event Name">
+                <div *ngIf="eventForm.controls['eventDescription'].invalid && eventForm.controls['eventDescription'].touched">
+                    <small *ngIf="eventForm.controls['eventDescription'].errors?.['required']" class="text-danger">
+                      Event Description is required.
+                    </small>
+                    
+                  </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveEvent()">Save Event</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

@@ -19,7 +19,12 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-
+  ngOnInit(): void {
+    // Redirect to dashboard if already authenticated
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
   // Submit Login Form
   onLogin(): void {
     if (this.loginForm.invalid) {
@@ -31,7 +36,9 @@ export class LoginComponent {
     this.authService.login(username, password).subscribe(
       (response) => {
         this.isLoading = false;
-        console.log('Login successful', response);
+        localStorage.setItem('token', response.token);
+
+        console.log('Login successful', response.token);
         this.router.navigate(['/dashboard']); 
         this.toastr.success(response.message, 'Success', {
           timeOut: 3000,

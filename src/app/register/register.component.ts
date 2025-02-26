@@ -25,7 +25,12 @@ export class RegisterComponent {
       c_password: ['', [Validators.required]]
     }, { validators: this.passwordMatchValidator });
   }
-
+  ngOnInit(): void {
+    // Redirect to dashboard if already authenticated
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
   // Custom Validator for Password Match
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('password')?.value;

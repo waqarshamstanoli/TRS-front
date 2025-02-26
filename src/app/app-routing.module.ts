@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { LayoutComponent } from './layout/layout.component';
 import { DashboardLayoutComponent } from './layout/dashboard-layout/dashboard-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {
     path: 'auth',
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardLayoutComponent, // Wrapper for dashboard
+    component: DashboardLayoutComponent, 
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: DashboardComponent }
     ]

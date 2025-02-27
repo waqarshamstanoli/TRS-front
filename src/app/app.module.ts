@@ -10,7 +10,11 @@ import { RegisterComponent } from './register/register.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LayoutComponent } from './layout/layout.component';
-
+import { DashboardLayoutComponent } from './layout/dashboard-layout/dashboard-layout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +23,17 @@ import { LayoutComponent } from './layout/layout.component';
     TopbarComponent,
     SidebarComponent,
     LayoutComponent,
+    DashboardLayoutComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule, // Required for two-way data binding with ngModel
     HttpClientModule, // For HTTP calls
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), 
   ],
   providers: [],
   bootstrap: [AppComponent],

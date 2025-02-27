@@ -1,12 +1,5 @@
 <div class="nk-block nk-block-lg">
-    <div class="nk-block-head">
-        <div class="nk-block-head-content">
-            <h4 class="nk-block-title">Data Table</h4>
-            <div class="justify-end">
-                <button type="button" class="btn btn-primary" (click)="openModal()">Add Event</button>
-            </div>
-        </div>
-    </div>
+   
     
     <div class="card card-bordered card-preview">
         <div class="card-inner">
@@ -14,38 +7,17 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>
-                    <tr>
-                        <td>Zorita Serrano</td>
-                        <td>Software Engineer</td>
-                        <td>San Francisco</td>
-                        <td>56</td>
-                        <td>2012/06/01</td>
-                        <td>$115,000</td>
-                    </tr>
-                    <tr>
-                        <td>Jennifer Acosta</td>
-                        <td>Junior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>43</td>
-                        <td>2013/02/01</td>
-                        <td>$75,650</td>
-                    </tr>
+                    <tr *ngFor="let event of events">
+                        <td>{{ event.eventName }}</td>
+                        <td>{{ event.eventDate | date: 'MMM d, y' }}</td> 
+                        <td>{{ event.eventDescription }}</td>
+                      </tr>
                 </tbody>
             </table>
         </div>
@@ -53,7 +25,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade show d-block" *ngIf="showModal" style="background: rgba(0, 0, 0, 0.5);">
+ <!-- <div class="modal fade show d-block" *ngIf="showModal" style="background: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -95,4 +67,4 @@
         </form>
         </div>
     </div>
-</div>
+</div>  -->

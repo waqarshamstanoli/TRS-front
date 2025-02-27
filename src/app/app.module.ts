@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataTableComponent } from './data-table/data-table.component';
 import { EventsComponent } from './events/events.component';
+// import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { EventsComponent } from './events/events.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(), 
+    // BsDatepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

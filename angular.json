@@ -32,8 +32,12 @@
               "src/dashlite.css",
               "src/style-email.css",
               "src/theme.css"
+              
+
             ],
-            "scripts": []
+            "scripts": [
+              
+            ]
           },
           "configurations": {
             "production": {

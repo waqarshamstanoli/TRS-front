@@ -34,11 +34,12 @@ export class LoginComponent {
     const { username, password } = this.loginForm.value;
 
     this.authService.login(username, password).subscribe(
-      (response: { token: string; message: string | undefined; }) => {
+      (response: { token: string; user?: any; message: string | undefined; }) => {
         this.isLoading = false;
         localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
 
-        console.log('Login successful', response.token);
+        console.log('Login successful', response);
         this.router.navigate(['/dashboard']); 
         this.toastr.success(response.message, 'Success', {
           timeOut: 3000,

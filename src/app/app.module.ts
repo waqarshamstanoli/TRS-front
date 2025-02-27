@@ -7,8 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { TopbarComponent } from './topbar/topbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { TopbarComponent } from './layout/topbar/topbar.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { LayoutComponent } from './layout/auth-layout/layout.component';
 import { DashboardLayoutComponent } from './layout/dashboard-layout/dashboard-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { EventsComponent } from './events/events.component';
+import { UserComponent } from './components/user/user.component';
 // import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { EventsComponent } from './events/events.component';
     DashboardComponent,
     DataTableComponent,
     EventsComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

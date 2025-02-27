@@ -20,6 +20,7 @@ export class RegisterComponent {
     private toastr: ToastrService
   ) {
     this.registerForm = this.fb.group({
+      userName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       c_password: ['', [Validators.required]]
@@ -43,9 +44,9 @@ export class RegisterComponent {
       return;
     }
     this.isLoading = true;
-    const { email, password, c_password } = this.registerForm.value;
+    const { email, password, c_password, userName } = this.registerForm.value;
 
-    this.authService.register(email, password, c_password).subscribe(
+    this.authService.register(email, password, c_password, userName).subscribe(
       (response) => {
         this.isLoading = false; 
         console.log('Registration successful', response);

@@ -9,6 +9,27 @@
         
         <!-- Email Field -->
         <div class="form-group mb-3">
+          <label class="form-label" for="email">User Name</label>
+          <div class="form-control-wrap">
+            <div class="form-icon form-icon-right">
+              <em class="icon ni ni-mail"></em>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="userName"
+              formControlName="userName"
+              placeholder="Enter Name"
+            />
+            <div *ngIf="registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched">
+              <small *ngIf="registerForm.controls['userName'].errors?.['required']" class="text-danger">
+                Name is required.
+              </small>
+             
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
           <label class="form-label" for="email">Email</label>
           <div class="form-control-wrap">
             <div class="form-icon form-icon-right">

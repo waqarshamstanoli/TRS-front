@@ -127,7 +127,7 @@ export class EventsComponent implements OnInit {
 
   this.eventForm.patchValue({
     eventName: event.eventName,
-    eventDate: formattedDate,  // ✅ Ensure date is in correct format
+    eventDate: formattedDate, 
     eventDescription: event.eventDescription
   });
     console.log(this.eventForm)

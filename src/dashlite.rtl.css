@@ -30474,7 +30474,7 @@ body.nav-shown {
   justify-content: center;
 }
 .nk-header-tools {
-  margin-right: auto;
+  margin-right: 0px;
   padding-top: 14px;
   padding-bottom: 14px;
 }

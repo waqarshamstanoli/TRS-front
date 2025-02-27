@@ -2,76 +2,79 @@
 <div>
     <div class="nk-block-head">
         <div class="nk-block-head-content">
-            <h4 class="nk-block-title">Users</h4>
+            <h4 class="nk-block-title">Events</h4>
             <div class="justify-end">
-                <button type="button" class="btn btn-primary" (click)="openModal()">Add Event</button>
+                <!-- <button type="button" class="btn btn-primary" (click)="openModal()">Add User</button> -->
 
             </div>
         </div>
     </div>
-    <div  class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
+    <div  class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-top" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Event</h5>
+                    <h5 class="modal-title">User</h5>
                     <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <em class="icon ni ni-cross"></em>
                     </a>
                 </div>
                 <div class="modal-body">
-                    <form [formGroup]="eventForm" (ngSubmit)="saveEvent()" class="w-100">
+                    <form [formGroup]="userForm" (ngSubmit)="saveUser()" class="w-100">
                     <div class="form-group mb-3">
-                        <label class="form-label" for="username">Event Name</label>
+                        <label class="form-label" for="name">User Name</label>
                         <div class="form-control-wrap">
                             <input
                             type="text"
                 class="form-control"
-                id="eventName"
-                formControlName="eventName"
-                placeholder="Enter Event Name"
+                id="name"
+                formControlName="name"
+                placeholder="Enter User Name"
                           />
-                          <div *ngIf="eventForm.controls['eventName'].invalid && eventForm.controls['eventName'].touched">
-                            <small *ngIf="eventForm.controls['eventName'].errors?.['required']" class="text-danger">
-                              Event Name is required.
+                          <div *ngIf="userForm.controls['name'].invalid && userForm.controls['name'].touched">
+                            <small *ngIf="userForm.controls['name'].errors?.['required']" class="text-danger">
+                              User Name is required.
                             </small>
                             
                           </div>
                         </div>
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label" for="username">Event Description</label>
+                        <label class="form-label" for="email">User Email</label>
                         <div class="form-control-wrap">
                             <input
                             type="text"
                 class="form-control"
-                id="eventDescription"
-                formControlName="eventDescription"
-                placeholder="Enter Event Description"
+                id="email"
+                formControlName="email"
+                placeholder="Enter Email"
                           />
-                          <div *ngIf="eventForm.controls['eventDescription'].invalid && eventForm.controls['eventDescription'].touched">
-                            <small *ngIf="eventForm.controls['eventDescription'].errors?.['required']" class="text-danger">
-                              Event Description is required.
+                          <div *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched">
+                            <small *ngIf="userForm.controls['email'].errors?.['required']" class="text-danger">
+                              Email is required.
                             </small>
                             
                           </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Date</label>
+                        <label class="form-label">Role</label>
                         <div class="form-control-wrap">
-                            <input type="date"  id="eventDate"
-                            formControlName="eventDate" class="form-control date-picker">
+                            <input  type="text"
+                            class="form-control"
+                            id="role"
+                            formControlName="role"
+                            placeholder="Enter User Role" >
                         </div>
                     </div>
                     <div class="modal-footer bg-light">
-                <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid" >Save Event</button>
+                <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid" >Save User</button>
                 <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-            </div>
-                    </form>
-                 
+            </div> </form>
+                   </div>
                
+                    
             
-                </div>
+              
             </div>
         </div>
     </div>
@@ -81,13 +84,13 @@
         <div class="modal-dialog modal-dialog-top" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Event</h5>
+                    <h5 class="modal-title">Delete User</h5>
                     <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <em class="icon ni ni-cross"></em>
                     </a>
                 </div>
                 <div class="modal-body">
-                    <p>Are You sure you want to delete event</p>
+                    <p>Are You sure you want to delete user</p>
                    </div>
                 <div class="modal-footer bg-light">
                 <button type="button" class="btn btn-primary" (click)="confirmDelete()" >Confirm</button>
@@ -99,5 +102,5 @@
         </div>
     </div>
 <app-data-table class="mt-2" (edit)="onEdit($event)" 
-(delete)="onDelete($event)"  [columns]="eventColumns" [data]="events"></app-data-table>
+(delete)="onDelete($event)"  [columns]="userColumns" [data]="users"></app-data-table>
 </div>

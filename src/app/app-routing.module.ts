@@ -6,6 +6,8 @@ import { LayoutComponent } from './layout/auth-layout/layout.component';
 import { DashboardLayoutComponent } from './layout/dashboard-layout/dashboard-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth.guard';
+import { EventsComponent } from './events/events.component';
+import { UserComponent } from './components/user/user.component';
 const routes: Routes = [
   {
     path: 'auth',
@@ -21,7 +23,9 @@ const routes: Routes = [
     component: DashboardLayoutComponent, 
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: DashboardComponent }
+      { path: '', component: DashboardComponent },
+      { path: 'events', component: EventsComponent },
+      { path: 'users', component: UserComponent }
     ]
   },
   { path: '**', redirectTo: 'auth' }

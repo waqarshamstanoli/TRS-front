@@ -14,8 +14,15 @@ export class EventsComponent implements OnInit {
   eventForm: FormGroup;
   events: any[] = [];
   isLoading = false;
+  editingEvent: any = null;
+  deleteEventId: any = null;
   private modalInstance!: Modal;
-
+  private deleteModalInstance!: Modal
+  eventColumns = [
+    { key: 'eventName', title: 'Event Name' },
+    { key: 'eventDate', title: 'Date' },
+    { key: 'eventDescription', title: 'Description' }
+  ];
   constructor(
     private eventService: EventService,
     private fb: FormBuilder,
@@ -30,11 +37,10 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     const modalElement = document.getElementById('myModal');
+    this.deleteModalInstance = new Modal(document.getElementById('deleteModal')!);
     if (modalElement) {
       this.modalInstance = new Modal(modalElement);
     }
-
-    // Fetch all events when the component initializes
     this.getAllEvents();
   }
 
@@ -62,34 +68,106 @@ export class EventsComponent implements OnInit {
       eventDate: this.eventForm.value.eventDate,
       eventDescription: this.eventForm.value.eventDescription
     };
+    if (this.editingEvent){
+      this.eventService.updateEvent(this.editingEvent._id, eventData ).subscribe(
+        (response) => {
+          this.isLoading = false;
+          this.toastr.success(response.message, 'Success', {
+            timeOut: 3000,
+            positionClass: 'toast-top-right'
+          });
+  
+         
+          this.getAllEvents();
+          this.resetForm();
+          this.closeModal();
+        },
+        (error) => {
+          this.isLoading = false;
+          this.toastr.error(error.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-right'
+          });
+        }
+      );
+    }
+    else {
+      this.eventService.saveEvent(eventData).subscribe(
+        (response) => {
+          this.isLoading = false;
+          this.toastr.success(response.message, 'Success', {
+            timeOut: 3000,
+            positionClass: 'toast-top-right'
+          });
+  
+         
+          this.getAllEvents();
+          this.resetForm();
+          this.closeModal();
+        },
+        (error) => {
+          this.isLoading = false;
+          this.toastr.error(error.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-right'
+          });
+        }
+      );
+    }
 
-    this.eventService.saveEvent(eventData).subscribe(
-      (response) => {
-        this.isLoading = false;
-        this.toastr.success(response.message, 'Success', {
-          timeOut: 3000,
-          positionClass: 'toast-top-right'
-        });
+    
+  }
+  resetForm() {
+    this.eventForm.reset();
+    this.editingEvent = null; // Reset edit mode
+  }
+  onEdit(event: any) {
+    this.modalInstance.show();
+    const formattedDate = event.eventDate ? new Date(event.eventDate).toISOString().split('T')[0] : '';
 
-        // Refresh event list after saving
-        this.getAllEvents();
-        this.closeModal();
+  this.eventForm.patchValue({
+    eventName: event.eventName,
+    eventDate: formattedDate,  // ✅ Ensure date is in correct format
+    eventDescription: event.eventDescription
+  });
+    console.log(this.eventForm)
+    this.editingEvent = event;
+  }
+  onDelete(event: any) {
+    this.deleteModalInstance.show();
+    this.deleteEventId = event._id
+  
+  }
+  confirmDelete() {
+    this.deleteModalInstance.hide();
+    this.eventService.deleteEvent(this.deleteEventId).subscribe(
+      () => {
+        this.toastr.success("Event deleted successfully", "Success");
+        this.fetchEvents();
       },
-      (error) => {
-        this.isLoading = false;
-        this.toastr.error(error.error.message, 'Error', {
-          timeOut: 3000,
-          positionClass: 'toast-top-right'
-        });
+      (error: any) => {
+        this.toastr.error("Error deleting event", "Error");
       }
     );
   }
-
+  fetchEvents() {
+    this.eventService.getEvents().subscribe(
+      (response) => {
+        this.events = response;
+      },
+      (error) => {
+        this.toastr.error("Failed to load events", "Error");
+      }
+    );
+  }
   openModal() {
     this.modalInstance.show();
   }
 
   closeModal() {
     this.modalInstance.hide();
+  }
+  closeDeleteModal() {
+    this.deleteModalInstance.hide();
   }
 }

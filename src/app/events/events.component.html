@@ -19,7 +19,7 @@
                     </a>
                 </div>
                 <div class="modal-body">
-                    <form [formGroup]="eventForm" (ngSubmit)="saveEvent()" class="w-75">
+                    <form [formGroup]="eventForm" (ngSubmit)="saveEvent()" class="w-100">
                     <div class="form-group mb-3">
                         <label class="form-label" for="username">Event Name</label>
                         <div class="form-control-wrap">
@@ -74,5 +74,29 @@
             </div>
         </div>
     </div>
-<app-data-table class="mt-2"  [events]="events"></app-data-table>
+
+    <!-- Delete modal -->
+    <div  class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-top" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal Title</h5>
+                    <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <em class="icon ni ni-cross"></em>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    
+                   </div>
+                <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-primary" (click)="confirmDelete()" >Confirm</button>
+
+                    <button type="button" class="btn btn-danger" (click)="closeDeleteModal()">Close</button>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+<app-data-table class="mt-2" (edit)="onEdit($event)" 
+(delete)="onDelete($event)"  [columns]="eventColumns" [data]="events"></app-data-table>
 </div>

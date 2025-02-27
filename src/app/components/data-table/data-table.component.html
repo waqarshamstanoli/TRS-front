@@ -1,0 +1,37 @@
+<div class="nk-block nk-block-lg">
+    <div class="card card-bordered card-preview">
+        <div class="card-inner">
+            <table class="datatable-init nowrap table">
+                <thead>
+                    <tr>
+                        <th *ngFor="let col of columns">{{ col.title }}</th>
+                        <th>Actions</th> <!-- Actions Column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of data">
+                        <td *ngFor="let col of columns">
+                          <!-- Format Date Column -->
+                          <ng-container *ngIf="col.key === 'eventDate'; else normalCell">
+                            {{ row[col.key] | date: 'MMM d, y' }}
+                          </ng-container>
+                          <ng-template #normalCell>
+                            {{ row[col.key] }}
+                          </ng-template>
+                        </td>
+                        <!-- Actions Column -->
+                        <td>
+                            <button class="btn btn-sm" (click)="editRow(row)">
+                                <img src="assets/edit.png" alt="Facebook" width="10" />
+                               
+                            </button>
+                            <button class="btn btn-sm " (click)="deleteRow(row)">
+                                <img src="assets/delete.png" alt="Facebook" width="10" />
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

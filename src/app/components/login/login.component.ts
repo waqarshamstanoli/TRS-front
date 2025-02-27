@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -34,7 +34,7 @@ export class LoginComponent {
     const { username, password } = this.loginForm.value;
 
     this.authService.login(username, password).subscribe(
-      (response) => {
+      (response: { token: string; message: string | undefined; }) => {
         this.isLoading = false;
         localStorage.setItem('token', response.token);
 
@@ -45,7 +45,7 @@ export class LoginComponent {
           positionClass: 'toast-top-right'
         });
       },
-      (error) => {
+      (error: { error: { message: string | undefined; }; }) => {
         this.isLoading = false;
         console.error('Login failed', error);
         this.errorMessage = 'Invalid credentials. Please try again.';

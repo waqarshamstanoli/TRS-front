@@ -1,5 +1,5 @@
 .background{
-    background-image: url('../../assets/login.svg');
+    background-image: url('../../../assets/login.svg');
     background-size: cover;
 }
 .btnPadding{

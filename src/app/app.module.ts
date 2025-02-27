@@ -5,17 +5,17 @@ import { FormsModule } from '@angular/forms'; // Required for ngModel
 import { HttpClientModule } from '@angular/common/http'; // For HttpClient
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { LayoutComponent } from './layout/layout.component';
+import { LayoutComponent } from './layout/auth-layout/layout.component';
 import { DashboardLayoutComponent } from './layout/dashboard-layout/dashboard-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DataTableComponent } from './data-table/data-table.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
 import { EventsComponent } from './events/events.component';
 // import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
